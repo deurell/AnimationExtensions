@@ -10,11 +10,12 @@ import RealityKit
 
 extension AnimationResource {
     static func quadracticBezierAnimation(start: simd_float3,
-                                                 control: simd_float3,
-                                                 end: simd_float3,
-                                                 step: Double = 0.02,
-                                                 speed: Double = 1,
-                                                 timingFunction: (Float) -> Float = {$0}) -> AnimationResource? {
+                                          control: simd_float3,
+                                          end: simd_float3,
+                                          step: Double = 0.02,
+                                          speed: Double = 1,
+                                          frameInterval: Float = 0.75,
+                                          timingFunction: (Float) -> Float = {$0}) -> AnimationResource? {
         var transforms: [Transform] = []
         for i in stride(from: 0.0, to: 1.0, by: step) {
             transforms.append(Transform(translation: getQuadraticBezierPoint(start: start,
@@ -24,7 +25,7 @@ extension AnimationResource {
                                                                             ))
             )
         }
-        var animationDefinition = SampledAnimation(frames: transforms, frameInterval: 0.75, bindTarget: .transform)
+        var animationDefinition = SampledAnimation(frames: transforms, frameInterval: frameInterval, bindTarget: .transform)
         animationDefinition.tweenMode = .linear
         animationDefinition.speed = Float(speed)
         let animationResource = try? AnimationResource.generate(with: animationDefinition)
