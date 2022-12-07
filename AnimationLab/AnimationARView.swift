@@ -87,7 +87,7 @@ class AnimationARView: ARView {
                                                                                                 control: [12, 16, 12],
                                                                                                 end: Constants.fishEndPosition,
                                                                                                 speed: 5.9,
-                                                                                                frameInterval: 0.5,
+                                                                                                frameInterval: 0.75,
                                                                                                 timingFunction: AnimationResource.quadraticEaseInOut),
                       let animationGroup = try? AnimationResource.group(with: [animationFromUsdz, bezierAnimationResource])
                 else {fatalError()}
